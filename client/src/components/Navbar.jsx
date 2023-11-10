@@ -1,7 +1,32 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/authContext";
 import Logo from "../img/Logo2.png";
+
+function DropdownMenu() {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  return (
+    <div className="dropdown">
+      <button className="dropdown-button" onClick={toggleDropdown}>
+        View Details
+      </button>
+      {isDropdownOpen && (
+        <div className="dropdown-content">
+          <a href="#">View Shopping Cart</a>
+          <a href="#">View Adoptions</a>
+          <Link className="link" to="/write">
+            Surrender a Pet
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
 
 const Navbar = () => {
   const { currentUser, logout } = useContext(AuthContext);
@@ -38,10 +63,8 @@ const Navbar = () => {
               Login
             </Link>
           )}
-          <span className="viewCart">
-            <Link className="link" to="/userdetails">
-              View Cart
-            </Link>
+          <span className="userDetails">
+            <DropdownMenu/>
           </span>
         </div>
       </div>

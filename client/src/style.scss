@@ -88,24 +88,71 @@ $lightBlue: #c9ebff;
             cursor: pointer;
           }
 
-          .viewCart {
-            background-color: $lightBlue;
-            width: 100px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 300;
-            border: 1px solid white;
+          // .viewCart {
+          //   background-color: $lightBlue;
+          //   width: 100px;
+          //   height: 50px;
+          //   border-radius: 50%;
+          //   display: flex;
+          //   align-items: center;
+          //   justify-content: center;
+          //   font-weight: 300;
+          //   border: 1px solid white;
 
-            &:hover {
-              color: teal;
-              background-color: white;
-              border: 1px solid teal;
-            }
-          }
+          //   &:hover {
+          //     color: teal;
+          //     background-color: white;
+          //     border: 1px solid teal;
+          //   }
+          // }
         }
+      }
+      /* Style for the dropdown container */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Style for the dropdown button */
+      .dropdown-button {
+        font-size: 16px;
+        font-weight: 300;
+        background-color: #3498db;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* Style for the dropdown content */
+      .dropdown-content {
+        font-size: 16px;
+        font-weight: 300;
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 180px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        border-radius: 4px;
+      }
+
+      /* Style for dropdown options */
+      .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* Change the link color on hover */
+      .dropdown-content a:hover {
+        background-color: #ddd;
+      }
+
+      /* Show the dropdown content when the dropdown button is hovered over */
+      .dropdown:hover .dropdown-content {
+        display: block;
       }
     }
 
