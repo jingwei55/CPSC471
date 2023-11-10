@@ -18,7 +18,7 @@ function DropdownMenu() {
       {isDropdownOpen && (
         <div className="dropdown-content">
           <a href="#">View Shopping Cart</a>
-          <a href="#">View Adoptions</a>
+          {/* <a href="#">View Adoptions</a> */}
           <Link className="link" to="/write">
             Surrender a Pet
           </Link>

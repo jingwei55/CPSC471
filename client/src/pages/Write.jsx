@@ -5,6 +5,114 @@ import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
 
+function PetTypeDropdown({ onSelectPetType, onSubmit }) {
+  const [selectedPetType, setSelectedPetType] = useState('');
+  const [petAge, setPetAge] = useState('');
+  const [description, setDescription] = useState('');
+  const [petName, setPetName] = useState('');
+
+  const handlePetTypeChange = (event) => {
+    const selectedType = event.target.value;
+    setSelectedPetType(selectedType);
+    onSelectPetType(selectedType); // Notify the parent component about the selected pet type
+  };
+
+  const handlePetAgeChange = (event) => {
+    setPetAge(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    // Limit the description to 100 characters
+    const limitedDescription = event.target.value.slice(0, 100);
+    setDescription(limitedDescription);
+  };
+
+  const handlePetNameChange = (event) => {
+    setPetName(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Create an object with the form data
+    const formData = {
+      petName,
+      selectedPetType,
+      petAge,
+      description,
+    };
+
+    // Call the onSubmit prop to handle the submission (e.g., send data to a database)
+    onSubmit(formData);
+
+    // Clear the form after submission
+    setPetName('');
+    setSelectedPetType('');
+    setPetAge('');
+    setDescription('');
+  };
+
+  // Generate an array of numbers from 0 to 100 for the pet age dropdown
+  const ageOptions = Array.from({ length: 101 }, (_, index) => index);
+
+  return (
+    <div className="pet-type-dropdown">
+      <div>
+        <label htmlFor="petName">Pet Name: </label>
+        <input
+          type="text"
+          id="petName"
+          value={petName}
+          onChange={handlePetNameChange}
+          placeholder="Insert Name Here"
+        />
+      </div>
+
+      <label htmlFor="petType">Select Pet Type: </label>
+      <select id="petType" value={selectedPetType} onChange={handlePetTypeChange}>
+        <option value="">Select an option</option>
+        <option value="amphibian">Amphibian</option>
+        <option value="reptile">Reptile</option>
+        <option value="mammal">Mammal</option>
+        <option value="other">Other</option>
+      </select>
+
+      <div>
+        <label htmlFor="petAge">Pet Age: </label>
+        <select
+          id="petAge"
+          value={petAge}
+          onChange={handlePetAgeChange}
+        >
+          <option value="">Select an age</option>
+          {ageOptions.map((age) => (
+            <option key={age} value={age}>{age} years</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="description">Description: </label>
+        <textarea
+          id="description"
+          value={description}
+          onChange={handleDescriptionChange}
+          placeholder="Enter description here (max 100 characters)"
+          rows="4"
+          cols="50"
+        />
+      </div>
+
+      <button type="button" onClick={handleSubmit}>Submit</button>
+
+      {selectedPetType && (
+        <p>
+          Pet Name: {petName || 'N/A'}. You selected: {selectedPetType} with age {petAge || 'N/A'}.
+          Description: {description || 'N/A'}
+        </p>
+      )}
+    </div>
+  );
+}
+
 const Write = () => {
   const state = useLocation().state;
   const [value, setValue] = useState(state?.title || "");
@@ -53,112 +161,8 @@ const Write = () => {
   return (
     <div className="add">
       <div className="content">
-        <input
-          type="text"
-          placeholder="Title"
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <div className="editorContainer">
-          <ReactQuill
-            className="editor"
-            theme="snow"
-            value={value}
-            onChange={setValue}
-          />
-        </div>
-      </div>
-      <div className="menu">
-        <div className="item">
-          <h1>Publish</h1>
-          <span>
-            <b>Status: </b> Draft
-          </span>
-          <span>
-            <b>Visibility: </b> Public
-          </span>
-          <input
-            style={{ display: "none" }}
-            type="file"
-            id="file"
-            name=""
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          <label className="file" htmlFor="file">
-            Upload Image
-          </label>
-          <div className="buttons">
-            <button>Save as a draft</button>
-            <button onClick={handleClick}>Publish</button>
-          </div>
-        </div>
-        <div className="item">
-          <h1>Category</h1>
-          <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "art"}
-              name="cat"
-              value="art"
-              id="art"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="art">Art</label>
-          </div>
-          <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "science"}
-              name="cat"
-              value="science"
-              id="science"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="science">Science</label>
-          </div>
-          <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "technology"}
-              name="cat"
-              value="technology"
-              id="technology"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="technology">Technology</label>
-          </div>
-          <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "cinema"}
-              name="cat"
-              value="cinema"
-              id="cinema"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="cinema">Cinema</label>
-          </div>
-          <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "design"}
-              name="cat"
-              value="design"
-              id="design"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="design">Design</label>
-          </div>
-          <div className="cat">
-            <input
-              type="radio"
-              checked={cat === "food"}
-              name="cat"
-              value="food"
-              id="food"
-              onChange={(e) => setCat(e.target.value)}
-            />
-            <label htmlFor="food">Food</label>
-          </div>
+        <div>
+          <PetTypeDropdown/>
         </div>
       </div>
     </div>

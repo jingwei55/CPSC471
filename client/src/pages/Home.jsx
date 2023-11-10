@@ -61,15 +61,10 @@ const Home = () => {
         {posts.map((post) => (
           <div className="post" key={post.id}>
             <div className="img">
-              {/* Insert image */}
               <img src={`../upload/${post.img}`} alt="" />
             </div>
             <div className="content">
-              {/* Insert title, description and button */}
-              {/* RMV: unless add for  */}
-              {/* <Link className="link" to={`/post/${post.id}`}> */}
               <h1>{post.title}</h1>
-              {/* </Link> */}
               <p>{getText(post.desc)}</p>
               <div class="quantity-counter">
                 <button class="quantity-button" id="decrement">-</button>
