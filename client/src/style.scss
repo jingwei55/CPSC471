@@ -1,4 +1,4 @@
-$lightGreen: #b9e7e7;
+$lightBlue: #c9ebff;
 
 .app {
   display: flex;
@@ -18,7 +18,7 @@ $lightGreen: #b9e7e7;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      background-color: $lightGreen;
+      background-color: $lightBlue;
 
       h1 {
         font-size: 20px;
@@ -71,7 +71,7 @@ $lightGreen: #b9e7e7;
         justify-content: space-between;
         .logo {
           img {
-            width: 120px;
+            width: 220px;
           }
         }
         .links {
@@ -88,9 +88,9 @@ $lightGreen: #b9e7e7;
             cursor: pointer;
           }
 
-          .write {
-            background-color: $lightGreen;
-            width: 50px;
+          .viewCart {
+            background-color: $lightBlue;
+            width: 100px;
             height: 50px;
             border-radius: 50%;
             display: flex;
@@ -113,14 +113,14 @@ $lightGreen: #b9e7e7;
 
     footer {
       margin-top: 100px;
-      padding: 20px;
-      background-color: $lightGreen;
+      padding: 0px 5px;
+      background-color: $lightBlue;
       display: flex;
       align-items: center;
       justify-content: space-between;
       font-size: 12px;
       img {
-        height: 50px;
+        height: 125px;
       }
     }
 
@@ -149,7 +149,7 @@ $lightGreen: #b9e7e7;
               content: "";
               width: 100%;
               height: 100%;
-              background-color: $lightGreen;
+              background-color: $lightBlue;
               position: absolute;
               top: 20px;
               left: -20px;
@@ -188,7 +188,7 @@ $lightGreen: #b9e7e7;
 
               &:hover {
                 border: 1px solid white;
-                background-color: $lightGreen;
+                background-color: $lightBlue;
                 color: black;
               }
             }
@@ -290,7 +290,7 @@ $lightGreen: #b9e7e7;
 
             &:hover {
               border: 1px solid white;
-              background-color: $lightGreen;
+              background-color: $lightBlue;
               color: black;
             }
           }
