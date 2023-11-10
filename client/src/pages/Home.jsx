@@ -5,47 +5,48 @@ import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
 const Home = () => {
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
 
   const cat = useLocation().search
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await axios.get(`/posts${cat}`);
-        setPosts(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [cat]);
-  // const posts = [
-  //   {
-  //     id: 1,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/6489663/pexels-photo-6489663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  //   {
-  //     id: 3,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/4230630/pexels-photo-4230630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  //   {
-  //     id: 4,
-  //     title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
-  //     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
-  //     img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-  //   },
-  // ];
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await axios.get(`/posts${cat}`);
+  //       setPosts(res.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [cat]);
+
+  const posts = [
+    {
+      id: 1,
+      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
+      img: "https://images.pexels.com/photos/7008010/pexels-photo-7008010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      id: 2,
+      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
+      img: "https://images.pexels.com/photos/6489663/pexels-photo-6489663.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      id: 3,
+      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
+      img: "https://images.pexels.com/photos/4230630/pexels-photo-4230630.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      id: 4,
+      title: "Lorem ipsum dolor sit amet consectetur adipisicing elit",
+      desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. A possimus excepturi aliquid nihil cumque ipsam facere aperiam at! Ea dolorem ratione sit debitis deserunt repellendus numquam ab vel perspiciatis corporis!",
+      img: "https://images.pexels.com/photos/6157049/pexels-photo-6157049.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+  ];
 
   const getText = (html) =>{
     const doc = new DOMParser().parseFromString(html, "text/html")
@@ -56,17 +57,26 @@ const Home = () => {
   return (
     <div className="home">
       <div className="posts">
+        {/* Replace with events, workshops, pets and items; all follow same format */}
         {posts.map((post) => (
           <div className="post" key={post.id}>
             <div className="img">
+              {/* Insert image */}
               <img src={`../upload/${post.img}`} alt="" />
             </div>
             <div className="content">
-              <Link className="link" to={`/post/${post.id}`}>
-                <h1>{post.title}</h1>
-              </Link>
+              {/* Insert title, description and button */}
+              {/* RMV: unless add for  */}
+              {/* <Link className="link" to={`/post/${post.id}`}> */}
+              <h1>{post.title}</h1>
+              {/* </Link> */}
               <p>{getText(post.desc)}</p>
-              <button>Read More</button>
+              <div class="quantity-counter">
+                <button class="quantity-button" id="decrement">-</button>
+                <input type="number" id="quantity" value="1"/>
+                <button class="quantity-button" id="increment">+</button>
+                <button id="submit">Buy</button>
+              </div>
             </div>
           </div>
         ))}

@@ -39,7 +39,7 @@ const Navbar = () => {
             </Link>
           )}
           <span className="viewCart">
-            <Link className="link" to="/write">
+            <Link className="link" to="/userdetails">
               View Cart
             </Link>
           </span>
