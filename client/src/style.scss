@@ -403,6 +403,12 @@ $lightBlue: #c9ebff;
       margin-top: 20px;
       display: flex;
       gap: 20px;
+
+      .picture {
+        padding-left: 100px; /* Add left padding as needed */
+        margin-left: 20px; /* Add margin-left for additional spacing */
+        box-sizing: border-box; /* Include padding in the width calculation */
+      }
     }
   }
 }

@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import moment from "moment";
+import pet from "../img/surrender pet.png";
 
 function PetTypeDropdown({ onSelectPetType, onSubmit }) {
   const [selectedPetType, setSelectedPetType] = useState('');
@@ -160,12 +161,16 @@ const Write = () => {
 
   return (
     <div className="add">
-      <div className="content">
-        <div>
-          <PetTypeDropdown/>
-        </div>
+      <PetTypeDropdown/>
+      <div className="picture">
+        <img
+          src={pet}
+          alt="Pet Image"
+          style={{ width: '80%', height: 'auto' }}
+        />
       </div>
     </div>
+    
   );
 };
 
