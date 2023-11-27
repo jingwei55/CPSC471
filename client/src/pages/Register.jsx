@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,6 +8,7 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [selectedRole, setSelectedRole] = useState(""); // New state for selected role
   const [err, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -17,10 +17,15 @@ const Register = () => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleRoleChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/auth/register", inputs);
+      // Include the selected role in the registration data
+      await axios.post("/auth/register", { ...inputs, role: selectedRole });
       navigate("/login");
     } catch (err) {
       setError(err.response.data);
@@ -52,6 +57,31 @@ const Register = () => {
           name="password"
           onChange={handleChange}
         />
+
+        {/* Radio buttons for selecting role */}
+        <div className="radio-group">
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="role"
+              value="employee"
+              checked={selectedRole === "employee"}
+              onChange={handleRoleChange}
+            />
+            Employee
+          </label>
+          <label className="radio-label">
+            <input
+              type="radio"
+              name="role"
+              value="member"
+              checked={selectedRole === "member"}
+              onChange={handleRoleChange}
+            />
+            Member
+            </label>
+        </div>
+
         <button onClick={handleSubmit}>Register</button>
         {err && <p>{err}</p>}
         <span>

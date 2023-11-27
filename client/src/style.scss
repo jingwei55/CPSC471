@@ -58,6 +58,19 @@ $lightBlue: #c9ebff;
           font-size: 12px;
           text-align: center;
         }
+
+        .radio-group {
+          display: flex;
+          flex-direction: row; /* Display options side by side */
+          gap: 10px; /* Add a gap between options */
+          font-size: 12px;
+        }
+
+        .radio-label {
+          padding-left: 10px;
+          display: flex;
+          align-items: center; /* Align text vertically with the radio button */
+        }
       }
     }
 
